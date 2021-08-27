@@ -1,37 +1,29 @@
 //Help codes for simplify my life :D
-import { util } from "./help"
-import React from "react"
-
 const url = "https://randomuser.me/api/"
 
-export const user = {
-  //Get "X" users in api
-  random: (result) => {
-    result = `?results=${result}`
-    const path = result
-    util.standard(path, "")
-    return user.get(path).then((value)=>{return value})
-  },
-
-  //Get user from API
-    get: async (path)=> {
-    path = util.standard(path, "")
-    
-    return await fetch(url+path,{
-      method:"GET",
-    })
+const RandUser = {
+  //Create users from API: https://randomuser.me/api/
+  createUser: async (path)=> {
+    return fetch(url + path, {method: "GET"})
     .then(res => {
       if (!res.ok){
-        return new Error("fail request")}
+        return new Error(`fail request:${res}`)}
 
       if (!res.status === 404){
-        return new Error("not found")}
+        return new Error("not found 404")}
 
       return res.json()
-    })   
-    .then((json)=>{
-      const list = json
-      return list
+    })
+    .then((res)=>{return res.results})
+  }
+}
+//Get users created in createUser
+export const user = {
+  get: (amount, gender)=>{
+    amount === undefined ? amount = "" : amount = `results=${amount}&`;
+    gender === undefined ? gender = "" : gender = `gender=${gender}&`;
 
-    })} 
+    const path = `?${amount}${gender}`
+    return RandUser.createUser(path)
+  }
 }
