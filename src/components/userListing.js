@@ -2,7 +2,7 @@ import {useEffect, useState} from "react"
 import {user} from "../services/randomUser"
 import { util } from "../services/help"
 
-const userList = user.get()
+const userList = user.get(5)
 
 export const UserList = () => {
   const [list, setList] = useState([])
@@ -60,6 +60,7 @@ export const UserList = () => {
   }
   else{
     return (
+
       <table>
         <tr>
           <th>Name</th>
@@ -67,9 +68,11 @@ export const UserList = () => {
           <th>Birth</th>
           <th>Actions</th>
         </tr>
+
       { //Call for screen, the Draw table
         tableUser()
       }
+
       </table>
     )
   }
