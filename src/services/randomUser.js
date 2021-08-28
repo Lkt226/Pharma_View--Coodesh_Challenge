@@ -14,7 +14,7 @@ const RandUser = {
 
       return res.json()
     })
-    .then((res)=>{return res.results})
+    .then((res)=>{return res})
   }
 }
 //Get users created in createUser

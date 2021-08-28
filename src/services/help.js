@@ -13,4 +13,11 @@ export const util = {
   allowType: (variable, type)=>{
     return typeof variable === type
   },
+
+  formatData: (date)=>{
+    //Transform date format
+    date = date.toString(); date = date.split("T")[0]
+    date = date.replaceAll("-","/");
+    return date
+  }
 }

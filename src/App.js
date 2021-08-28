@@ -1,7 +1,4 @@
-import {user} from "./services/randomUser";
-import {List} from "./components/userListing"
-
-
+import {UserList} from "./components/userListing"
 
 function App() {
 
@@ -10,7 +7,7 @@ function App() {
       <h1>
         Hello World
       </h1>
-      <List/>
+      <UserList/>
 
     </div>
   );
