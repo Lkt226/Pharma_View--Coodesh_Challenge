@@ -1,6 +1,8 @@
 import {UserList} from "./components/userListing"
 import "tailwindcss/tailwind.css"
-import { BtsList } from "./components/bts-table";
+import { BtsList } from "./components/bts-table.jsx";
+import {Table} from "./components/pagTable"
+
 
 const App = () => {
 

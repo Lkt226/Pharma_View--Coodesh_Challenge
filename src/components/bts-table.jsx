@@ -1,6 +1,8 @@
 
 import { Button, Alert, Table } from "react-bootstrap"
+import {util} from "../services/help"
 import * as ReactBootStrap from "react-bootstrap"
+import { useState } from "react"
 
 export const BtsList = () => {
   const player = [
@@ -19,6 +21,26 @@ export const BtsList = () => {
     )
   }
 
+  const [render, setRender] = useState(player.map(renderPlayer))
+
+  const searchUser = (e)=>{
+    const searchString = e.target.value.toLowerCase()
+
+    const filterUsers = player.filter((user) => {
+
+      return (
+         util.include(
+          [
+            user.name, 
+            user.position, 
+            user.team
+          ], 
+            searchString)
+       )
+    })
+    setRender(filterUsers.map(renderPlayer)) 
+  }
+
   const styleTr = {
     backgroundColor: "#d3d8d9" ,
     fontSize: "1.7rem",
@@ -26,8 +48,9 @@ export const BtsList = () => {
   }
 
   return(
-    <div>
-      <Table className="container table-bordered text-center table table-hover table-responsive" style={{border: "2px solid #a5a5a5"}}>
+    <div className="container table-bordered text-center table table-hover table-responsive" style={{border: "2px solid #a5a5a5"}}>
+      <input type="search" name="search" id="search" onKeyUpCapture={searchUser}/>
+      <Table>
         <thead>
           <tr style={styleTr}>
             <th>Position</th>
@@ -37,7 +60,7 @@ export const BtsList = () => {
         </thead>
         <tbody>
           {
-            player.map(renderPlayer)
+            render
           }
         </tbody>
       </Table>
