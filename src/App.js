@@ -1,13 +1,15 @@
 import {UserList} from "./components/userListing"
+import "tailwindcss/tailwind.css"
+import { BtsList } from "./components/bts-table";
 
-function App() {
+const App = () => {
 
   return (
     <div>
       <h1>
         Hello World
       </h1>
-      <UserList/>
+      <BtsList/>
 
     </div>
   );

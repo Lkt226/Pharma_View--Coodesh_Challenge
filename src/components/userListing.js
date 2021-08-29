@@ -2,7 +2,9 @@ import {useEffect, useState} from "react"
 import {user} from "../services/randomUser"
 import { util } from "../services/help"
 
-const userList = user.get(5)
+import "tailwindcss/tailwind.css"
+
+const userList = user.get(50)
 
 export const UserList = () => {
   const [list, setList] = useState([])
@@ -23,6 +25,7 @@ export const UserList = () => {
   },[])
 
   //Draw table and get values
+  
   const tableUser = ()=>{
     return list.map(item =>{
       const fullName = `${item.name.first} ${item.name.last}`
