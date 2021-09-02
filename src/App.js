@@ -1,7 +1,7 @@
 import {UserList} from "./components/userListing"
 import "tailwindcss/tailwind.css"
 import { BtsList } from "./components/bts-table.jsx";
-import {Table} from "./components/pagTable"
+import {UserTable} from "./components/pagTable"
 
 
 const App = () => {
@@ -12,6 +12,7 @@ const App = () => {
         Hello World
       </h1>
       <BtsList/>
+      <UserTable/>
 
     </div>
   );

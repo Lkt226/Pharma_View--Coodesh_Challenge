@@ -5,11 +5,9 @@ import {user} from "../services/randomUser"
 import { useState, useEffect } from "react"
 
 
-
-
-let path = {welcome: "I am", Name: "Walder Mike", WhatsDoTalk: "Hello"}
-console.log(path.values(path))
-const userList = user.get(10)
+const userList = (amount, gender)=>{
+  return user.get(amount,gender)
+}
 
 export const BtsList = () => {
 
@@ -17,12 +15,23 @@ export const BtsList = () => {
   const [load, setLoad] = useState(false)
   const [player, setPlayer] = useState([])
 
-  let limitUser = 5
+  const [limitUser, setLimitUser] = useState(5)
+
+  const amountUsers = 50
+
+  //let limitUser = 5
+  const [gender, setGender]  = useState("");
+
+
+
+  const source = ()=>{
+    return [limitUser, gender]
+  }
 
   const [render, setRender] = useState([])
   
   useEffect(()=>{
-    userList.then(
+    userList(amountUsers, gender).then(
       res=>{
         setLoad(true)
         setPlayer(res.results)
@@ -68,12 +77,15 @@ export const BtsList = () => {
 
   const isMale = ()=>{
     const searchGender = "male"
+
+    setGender(searchGender) 
     
+    console.log(source())
+
     limitUsers(player)
   }
 
   const limitUsers = (source)=>{
-    console.log(source)
     if(source.length > limitUser){
       setRender(source.slice(0, limitUser).map(renderPlayer))
     }else{
@@ -83,7 +95,8 @@ export const BtsList = () => {
   }
 
   const moreLimit = () =>{
-    limitUser = limitUser + 5
+    setLimitUser(limitUser + 5)
+    console.log(limitUser)
     limitUsers(player)
   }
 
